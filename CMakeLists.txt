@@ -13,4 +13,12 @@ set(SOURCE_FILES
         Dictionary.h
         KeyValue.h
         Utils.cpp Utils.h)
-add_executable(ITAK ${SOURCE_FILES})
+
+add_executable(ITAK main.cpp ${SOURCE_FILES})
+
+set(TEST_FILES
+        Testing/testMain.cpp
+        Testing/DOSTester.cpp Testing/DOSTester.h
+        Testing/PSTester.cpp Testing/PSTester.h)
+
+add_executable(Test Testing/testMain.cpp ${SOURCE_FILES} ${TEST_FILES})
