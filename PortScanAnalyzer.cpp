@@ -3,3 +3,7 @@
 //
 
 #include "PortScanAnalyzer.h"
+
+ResultSet PortScanAnalyzer::run(std::istream &) {}
+
+void PortScanAnalyzer::setConfiguration(Configuration config) {}

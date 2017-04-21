@@ -20,6 +20,7 @@ public:
     Dictionary(const Dictionary&);
 
     void add(X key, Y value);
+    void addOrCreate(X key, Y value);
     KeyValue<X, Y> getByKey(X key) const;
     KeyValue<X, Y> getByIndex(int index) const;
     void removeByKey(X key);
@@ -56,6 +57,16 @@ Dictionary<X,Y>::Dictionary(const Dictionary & d) {
  */
 template <typename X, typename Y>
 void Dictionary<X,Y>::add(X key, Y value) {
+    if (!search(key)) {
+        KeyValue<X, Y> myVal(key, value);
+        myKeyVals.push_back(myVal);
+    }
+    else
+        throw std::invalid_argument ("Cannot create duplicate Keys");
+}
+
+template <typename X, typename Y>
+void Dictionary<X,Y>::addOrCreate(X key, Y value) {
     if (!search(key)) {
         KeyValue<X, Y> myVal(key, value);
         myKeyVals.push_back(myVal);

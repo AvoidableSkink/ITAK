@@ -5,9 +5,15 @@
 #ifndef ITAK_DENIALOFSERVICEANALYZER_H
 #define ITAK_DENIALOFSERVICEANALYZER_H
 
+#include "Analyzer.h"
+#include "Dictionary.h"
 
-class DenialOfServiceAnalyzer {
-
+class DenialOfServiceAnalyzer : public Analyzer{
+private:
+    Dictionary<std::string, Dictionary<int, int>> myData;
+public:
+    ResultSet run(std::istream&);
+    void setConfiguration(Configuration config);
 };
 
 
