@@ -7,7 +7,8 @@
 
 
 class DOSTester {
-
+public:
+    void testSetConfiguration();
 };
 
 

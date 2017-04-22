@@ -10,7 +10,7 @@
 class PortScanAnalyzer : public Analyzer{
 public:
     ResultSet run(std::istream&);
-    void setConfiguration(Configuration);
+    void setConfiguration(Configuration config);
 };
 
 

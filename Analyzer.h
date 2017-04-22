@@ -12,8 +12,8 @@
 
 class Analyzer {
 public:
-    virtual ResultSet run(std::istream&);
-    virtual void setConfiguration(Configuration config);
+    virtual ResultSet run(std::istream&){};
+    virtual void setConfiguration(Configuration config){};
 };
 
 

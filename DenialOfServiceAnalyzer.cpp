@@ -2,12 +2,15 @@
 // Created by klind on 4/18/2017.
 //
 
-#include <io.h>
 #include "DenialOfServiceAnalyzer.h"
+
+DenialOfServiceAnalyzer::DenialOfServiceAnalyzer() {
+    configured = false;
+}
 
 ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
     //if the analyzer is not configured, return an empty ResultSet
-    if (timeframe == NULL || likelyThreshold == NULL || possibleThreshold == NULL)
+    if (!configured)
     {
         ResultSet empty;
         return empty;
@@ -21,6 +24,7 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
 }
 
 void DenialOfServiceAnalyzer::setConfiguration(Configuration config) {
+    configured = false;
     try {
         timeframe = config.getValAsInt("TimeFrame");
     }
@@ -44,4 +48,5 @@ void DenialOfServiceAnalyzer::setConfiguration(Configuration config) {
         std::cout << "Possible Attack Message Count required for DenialOfServiceAnalyzer. Configuration no set." << std::endl;
         return;
     }
+    configured = true;
 }
