@@ -48,10 +48,12 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
             {
                 int newCount = timeToCount.getByKey(convertStringToInt(time)).getValue()+1;
                 timeToCount.updateKey(convertStringToInt(time), newCount);
+                myData.updateKey(ip, timeToCount);
             }
             else
             {
                 timeToCount.add(convertStringToInt(time), 1);
+                myData.updateKey(ip, timeToCount);
             }
         }
     }
