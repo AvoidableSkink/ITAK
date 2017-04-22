@@ -24,14 +24,26 @@ void DOSTester::testSetConfiguration() {
         std::cout << "Failure: expected timeframe value: '5' "
                   << denialOfServiceAnalyzer.getTimeframe() << " found instead" << std::endl;
     }
-    if (denialOfServiceAnalyzer.getlikelyThreshold() != 500)
+    if (denialOfServiceAnalyzer.getLikelyThreshold() != 500)
     {
         std::cout << "Failure: expected likelyThreshold value: '500' "
-                  << denialOfServiceAnalyzer.getlikelyThreshold() << " found instead" << std::endl;
+                  << denialOfServiceAnalyzer.getLikelyThreshold() << " found instead" << std::endl;
     }
     if (denialOfServiceAnalyzer.getPossibleThreshold() != 300)
     {
         std::cout << "Failure: expected timeframe value: '300' "
                   << denialOfServiceAnalyzer.getPossibleThreshold() << " found instead" << std::endl;
     }
+
+    Configuration newConfiguration;
+    newConfiguration.addParamter("Unnecessary", "5");
+    newConfiguration.addParamter("Likely Attack Message Count", "500");
+    newConfiguration.addParamter("Possible Attack Message Count", "300");
+
+    DenialOfServiceAnalyzer newDenialOfServiceAnalyzer;
+    try {
+        newDenialOfServiceAnalyzer.setConfiguration(newConfiguration);
+        std::cout << "Failure: Inadequate configuration set." << std::endl;
+    }
+    catch (std::out_of_range){}
 }

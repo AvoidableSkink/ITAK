@@ -22,7 +22,7 @@ public:
 
     //functions to give test cases access to some data members
     int getTimeframe() { return timeframe; }
-    int getlikelyThreshold() { return likelyThreshold; }
+    int getLikelyThreshold() { return likelyThreshold; }
     int getPossibleThreshold() { return possibleThreshold; }
 };
 

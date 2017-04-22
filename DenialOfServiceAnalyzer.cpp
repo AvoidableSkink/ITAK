@@ -25,28 +25,8 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
 
 void DenialOfServiceAnalyzer::setConfiguration(Configuration config) {
     configured = false;
-    try {
-        timeframe = config.getValAsInt("TimeFrame");
-    }
-    catch (std::out_of_range){
-        std::cout << "TimeFrame required for DenialOfServiceAnalyzer. Configuration not set." << std::endl;
-        return;
-    }
-
-    try {
-        likelyThreshold = config.getValAsInt("Likely Attack Message Count");
-    }
-    catch (std::out_of_range){
-        std::cout << "Likely Attack Message Count required for DenialOfServiceAnalyzer. Configuration not set." << std::endl;
-        return;
-    }
-
-    try {
-        possibleThreshold = config.getValAsInt("Possible Attack Message Count");
-    }
-    catch (std::out_of_range){
-        std::cout << "Possible Attack Message Count required for DenialOfServiceAnalyzer. Configuration no set." << std::endl;
-        return;
-    }
+    timeframe = config.getValAsInt("TimeFrame");
+    likelyThreshold = config.getValAsInt("Likely Attack Message Count");
+    possibleThreshold = config.getValAsInt("Possible Attack Message Count");
     configured = true;
 }
