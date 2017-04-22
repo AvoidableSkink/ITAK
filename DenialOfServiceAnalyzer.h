@@ -11,6 +11,10 @@
 class DenialOfServiceAnalyzer : public Analyzer{
 private:
     Dictionary<std::string, Dictionary<int, int>> myData;
+    bool configured = false;
+    int timeframe = NULL;
+    int likelyThreshold = NULL;
+    int possibleThreshold = NULL;
 public:
     ResultSet run(std::istream&);
     void setConfiguration(Configuration config);

@@ -75,6 +75,7 @@ KeyValue<X, Y> Dictionary<X,Y>::getByKey(X k) const{
         if (myKeyVals[i].getKey() == k)
             return myKeyVals[i];
     }
+    throw std::out_of_range ("Requested key does not exist");
 }
 
 template <typename X, typename Y>
