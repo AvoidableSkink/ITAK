@@ -32,7 +32,28 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
             des = myVals[3];
         }
 
-        std::cout << time << " " << ip << " " << src << " " << des << std::endl;
+        //a mess
+        //if the ip is not already in the dictionary, add it
+//        if (!myData.search(ip))
+//        {
+//            Dictionary<int, int> newDictionary;
+//            newDictionary.add(convertStringToInt(time), 1);
+//            myData.add(ip, newDictionary);
+//        }
+//        else
+//        {
+//            KeyValue<std::string, Dictionary<int, int>> addressToSum = myData.getByKey(ip);
+//            Dictionary<int, int> timeToCount = addressToSum.getValue();
+//            if (timeToCount.search(convertStringToInt(time)))
+//            {
+//                int newCount = timeToCount.getByKey(convertStringToInt(time)).getValue()+1;
+//                timeToCount.updateKey(convertStringToInt(time), newCount);
+//            }
+//            else
+//            {
+//                timeToCount.add(convertStringToInt(time), 1);
+//            }
+//        }
     }
 }
 

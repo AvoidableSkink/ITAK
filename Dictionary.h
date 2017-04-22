@@ -20,8 +20,9 @@ public:
     Dictionary(const Dictionary&);
 
     void add(X key, Y value);
-    KeyValue<X, Y> getByKey(X key) const;
-    KeyValue<X, Y> getByIndex(int index) const;
+    void updateKey(X key, Y value);
+    KeyValue<X,Y> getByKey(X key) const;
+    KeyValue<X,Y> getByIndex(int index) const;
     void removeByKey(X key);
     void removeByIndex(int index);
     bool search(X k) const;
@@ -64,13 +65,24 @@ void Dictionary<X,Y>::add(X key, Y value) {
         throw std::invalid_argument ("Cannot create duplicate Keys");
 }
 
+
+template <typename X, typename Y>
+void Dictionary<X,Y>::updateKey(X key, Y val) {
+    for (int i = 0; i < myKeyVals.size(); ++i) {
+        if (myKeyVals[i].getKey() == key){
+            myKeyVals[i] = KeyValue<X,Y>(key,val);
+            return;
+        }
+    }
+}
+
 /**
  * search myKeyVals for given key
  * @param key used to search through the keyvalues
  * @return return the KeyValue found at location of given key
  */
 template <typename X, typename Y>
-KeyValue<X, Y> Dictionary<X,Y>::getByKey(X k) const{
+KeyValue<X,Y> Dictionary<X,Y>::getByKey(X k) const{
     for (int i = 0; i < myKeyVals.size(); ++i) {
         if (myKeyVals[i].getKey() == k)
             return myKeyVals[i];
@@ -79,7 +91,7 @@ KeyValue<X, Y> Dictionary<X,Y>::getByKey(X k) const{
 }
 
 template <typename X, typename Y>
-KeyValue<X, Y> Dictionary<X,Y>::getByIndex(int index) const{
+KeyValue<X,Y> Dictionary<X,Y>::getByIndex(int index) const{
     if (index < myKeyVals.size() && index >= 0)
         return myKeyVals[index];
     else
