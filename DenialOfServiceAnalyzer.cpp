@@ -40,20 +40,20 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
             newDictionary.add(convertStringToInt(time), 1);
             myData.add(ip, newDictionary);
         }
-//        else
-//        {
-//            KeyValue<std::string, Dictionary<int, int>> addressToSum = myData.getByKey(ip);
-//            Dictionary<int, int> timeToCount = addressToSum.getValue();
-//            if (timeToCount.search(convertStringToInt(time)))
-//            {
-//                int newCount = timeToCount.getByKey(convertStringToInt(time)).getValue()+1;
-//                timeToCount.updateKey(convertStringToInt(time), newCount);
-//            }
-//            else
-//            {
-//                timeToCount.add(convertStringToInt(time), 1);
-//            }
-//        }
+        else
+        {
+            KeyValue<std::string, Dictionary<int, int>> addressToSum = myData.getByKey(ip);
+            Dictionary<int, int> timeToCount = addressToSum.getValue();
+            if (timeToCount.search(convertStringToInt(time)))
+            {
+                int newCount = timeToCount.getByKey(convertStringToInt(time)).getValue()+1;
+                timeToCount.updateKey(convertStringToInt(time), newCount);
+            }
+            else
+            {
+                timeToCount.add(convertStringToInt(time), 1);
+            }
+        }
     }
 }
 
