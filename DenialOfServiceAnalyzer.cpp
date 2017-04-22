@@ -34,12 +34,12 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
 
         //a mess
         //if the ip is not already in the dictionary, add it
-//        if (!myData.search(ip))
-//        {
-//            Dictionary<int, int> newDictionary;
-//            newDictionary.add(convertStringToInt(time), 1);
-//            myData.add(ip, newDictionary);
-//        }
+        if (!myData.search(ip))
+        {
+            Dictionary<int, int> newDictionary;
+            newDictionary.add(convertStringToInt(time), 1);
+            myData.add(ip, newDictionary);
+        }
 //        else
 //        {
 //            KeyValue<std::string, Dictionary<int, int>> addressToSum = myData.getByKey(ip);
