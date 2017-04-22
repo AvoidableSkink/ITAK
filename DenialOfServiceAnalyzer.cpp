@@ -3,6 +3,7 @@
 //
 
 #include "DenialOfServiceAnalyzer.h"
+#include "Utils.h"
 
 DenialOfServiceAnalyzer::DenialOfServiceAnalyzer() {
     configured = false;
@@ -16,11 +17,23 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
         return empty;
     }
 
-//    std::string time, ip, src, des;
-//    while (!in.eof())
-//    {
-//        in >> time >> ip >> src >> des;
-//    }
+    std::string time, ip, src, des;
+    while (!in.eof())
+    {
+        std::string line;
+        std::getline(in, line);
+
+        std::string myVals[4];
+        if (split(line, ',', myVals, 4))
+        {
+            time = myVals[0];
+            ip = myVals[1];
+            src = myVals[2];
+            des = myVals[3];
+        }
+
+        std::cout << time << " " << ip << " " << src << " " << des << std::endl;
+    }
 }
 
 void DenialOfServiceAnalyzer::setConfiguration(Configuration config) {

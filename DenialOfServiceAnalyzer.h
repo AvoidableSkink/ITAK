@@ -17,7 +17,7 @@ private:
     int possibleThreshold;
 public:
     DenialOfServiceAnalyzer();
-    ResultSet run(std::istream&);
+    ResultSet run(std::istream& in);
     void setConfiguration(Configuration config);
 
     //functions to give test cases access to some data members

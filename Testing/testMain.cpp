@@ -14,4 +14,5 @@ int main() {
 
     DOSTester dosTester;
     dosTester.testSetConfiguration();
+    dosTester.testRun();
 }

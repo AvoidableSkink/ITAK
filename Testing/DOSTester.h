@@ -9,6 +9,7 @@
 class DOSTester {
 public:
     void testSetConfiguration();
+    void testRun();
 };
 
 
