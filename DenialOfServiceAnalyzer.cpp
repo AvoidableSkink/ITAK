@@ -17,6 +17,13 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
         return empty;
     }
 
+    ResultSet resultSet;
+    std::vector<std::string> likelyAttackers;
+    std::vector<std::string> possibleAttackers;
+    std::vector<std::string> attackPeriods;
+    std::vector<std::string> timeFrame;
+    timeFrame.push_back(std::to_string(timeframe));
+
     std::string time, ip, src, des;
     while (!in.eof())
     {
@@ -34,11 +41,14 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
         fillDOS(ip, time);
     }
 
-
     for (int i = 0; i < myData.getCount(); ++i) {
+        bool likelyAttacker = false;
+        bool possibleAttacker = false;
+
         KeyValue<std::string, Dictionary<int, int>> addressToSum = myData.getByIndex(i);
         Dictionary<int, int> timeToCount = addressToSum.getValue();
 
+        //go from each time and add the subsequent counts until the limit
         for (int j = 0; j < timeToCount.getCount(); ++j) {
             int messageCount = 0;
             int startTime = timeToCount.getByIndex(j).getKey();
@@ -59,6 +69,19 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
                 failed = false;
             }
             std::cout << messageCount << std::endl;
+
+            std::string attackPeriod = std::to_string(startTime) + "-" + std::to_string(limit-1);
+            //add qualified data to the vectors
+            if (messageCount >= likelyThreshold)
+            {
+                likelyAttacker = true;
+                attackPeriods.push_back(attackPeriod);
+            }
+            else if (messageCount >= possibleThreshold)
+            {
+                possibleAttacker = true;
+                attackPeriods.push_back(attackPeriod);
+            }
         }
     }
 }
