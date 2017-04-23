@@ -11,20 +11,15 @@
 class DenialOfServiceAnalyzer : public Analyzer{
 private:
     Dictionary<std::string, Dictionary<int, int>> myData;
-    bool configured;
     int timeframe;
-    int likelyThreshold;
-    int possibleThreshold;
-    ResultSet results;
+
 public:
     DenialOfServiceAnalyzer();
     ResultSet run(std::istream& in);
     void setConfiguration(Configuration config);
-    void fillDOS(std::string ip, std::string time);
+    void fill(std::string ip, std::string time);
     //functions to give test cases access to some data members
     int getTimeframe() { return timeframe; }
-    int getLikelyThreshold() { return likelyThreshold; }
-    int getPossibleThreshold() { return possibleThreshold; }
 };
 
 

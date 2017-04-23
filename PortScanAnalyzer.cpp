@@ -36,7 +36,7 @@ ResultSet PortScanAnalyzer::run(std::istream & in) {
             ip = myVals[1];
             des = myVals[3];
         }
-        fillPSA(ip, des);
+        fill(ip, des);
     }
 
     //attack detection phase
@@ -59,7 +59,7 @@ void PortScanAnalyzer::setConfiguration(Configuration config) {
     configured = true;
 }
 
-void PortScanAnalyzer::fillPSA(std::string ip, std::string des) {
+void PortScanAnalyzer::fill(std::string ip, std::string des) {
     //fill the dictionary
     if (!myData.search(ip))
     {

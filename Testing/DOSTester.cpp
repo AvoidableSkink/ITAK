@@ -66,7 +66,7 @@ void DOSTester::testRun() {
     ResultSet results = denialOfServiceAnalyzer.run(inputStream);
     results.print();
 
-    std::cout << "case two" << std::endl;
+    std::cout << "\ncase two" << std::endl;
     //set up a configuration
     Configuration myConfiguration2;
     myConfiguration2.addParamter("bad configuration", "5");

@@ -35,7 +35,7 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
             time = myVals[0];
             ip = myVals[1];
         }
-        fillDOS(ip, time);
+        fill(ip, time);
     }
 
     for (int i = 0; i < myData.getCount(); ++i) {
@@ -93,7 +93,7 @@ void DenialOfServiceAnalyzer::setConfiguration(Configuration config) {
     configured = true;
 }
 
-void DenialOfServiceAnalyzer::fillDOS(std::string ip, std::string time) {
+void DenialOfServiceAnalyzer::fill(std::string ip, std::string time) {
     //if the ip is not already in the dictionary, add it
     if (!myData.search(ip))
     {

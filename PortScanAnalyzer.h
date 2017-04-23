@@ -10,18 +10,12 @@
 class PortScanAnalyzer : public Analyzer{
 private:
     Dictionary<std::string, std::vector<int>> myData;
-    bool configured;
-    int likelyThreshold;
-    int possibleThreshold;
-    ResultSet results;
+
 public:
     PortScanAnalyzer();
     ResultSet run(std::istream&);
     void setConfiguration(Configuration config);
-    void fillPSA(std::string ip, std::string des);
-    //functions to give test cases access to some data members
-    int getLikelyThreshold() { return likelyThreshold; }
-    int getPossibleThreshold() { return possibleThreshold; }
+    void fill(std::string ip, std::string des);
 };
 
 

@@ -21,7 +21,7 @@ public:
 
     void add(X key, Y value);
     void updateKey(X key, Y value);
-    KeyValue<X,Y>& getByKey(X key);
+    KeyValue<X,Y> getByKey(X key) const;
     KeyValue<X,Y> getByIndex(int index) const;
     void removeByKey(X key);
     void removeByIndex(int index);
@@ -82,7 +82,7 @@ void Dictionary<X,Y>::updateKey(X key, Y val) {
  * @return return the KeyValue found at location of given key
  */
 template <typename X, typename Y>
-KeyValue<X,Y>& Dictionary<X,Y>::getByKey(X k) {
+KeyValue<X,Y> Dictionary<X,Y>::getByKey(X k) const{
     for (int i = 0; i < myKeyVals.size(); ++i) {
         if (myKeyVals[i].getKey() == k)
             return myKeyVals[i];
