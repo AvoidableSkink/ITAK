@@ -65,8 +65,6 @@ ResultSet PortScanAnalyzer::run(std::istream & in) {
             }
         }
     }
-
-
 }
 
 void PortScanAnalyzer::setConfiguration(Configuration config) {

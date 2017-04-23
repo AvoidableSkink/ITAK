@@ -63,5 +63,5 @@ void DOSTester::testRun() {
 
     std::ifstream inputStream("../SampleData.csv");
     ResultSet results = denialOfServiceAnalyzer.run(inputStream);
-    results.print();
+//    results.print();
 }

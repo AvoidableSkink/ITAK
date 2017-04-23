@@ -18,6 +18,10 @@ public:
     PortScanAnalyzer();
     ResultSet run(std::istream&);
     void setConfiguration(Configuration config);
+
+    //functions to give test cases access to some data members
+    int getLikelyThreshold() { return likelyThreshold; }
+    int getPossibleThreshold() { return possibleThreshold; }
 };
 
 

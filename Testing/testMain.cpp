@@ -5,6 +5,7 @@
 #include <iostream>
 #include "ConfigurationTester.h"
 #include "DOSTester.h"
+#include "PSTester.h"
 
 int main() {
     ConfigurationTester configurationTester;
@@ -15,4 +16,7 @@ int main() {
     DOSTester dosTester;
     dosTester.testSetConfiguration();
     dosTester.testRun();
+
+    PSTester psTester;
+    psTester.testSetConfiguration();
 }

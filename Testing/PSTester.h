@@ -7,7 +7,9 @@
 
 
 class PSTester {
-
+public:
+    void testSetConfiguration();
+    void testRun();
 };
 
 
