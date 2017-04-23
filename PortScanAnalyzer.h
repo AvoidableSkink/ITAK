@@ -8,7 +8,14 @@
 #include "Analyzer.h"
 
 class PortScanAnalyzer : public Analyzer{
+private:
+    Dictionary<std::string, std::vector<int>> myData;
+    bool configured;
+    int likelyThreshold;
+    int possibleThreshold;
+    ResultSet results;
 public:
+    PortScanAnalyzer();
     ResultSet run(std::istream&);
     void setConfiguration(Configuration config);
 };

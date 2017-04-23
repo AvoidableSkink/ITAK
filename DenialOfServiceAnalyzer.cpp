@@ -41,8 +41,6 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
     }
 
     for (int i = 0; i < myData.getCount(); ++i) {
-        bool likelyAttacker = false;
-        bool possibleAttacker = false;
 
         KeyValue<std::string, Dictionary<int, int>> addressToSum = myData.getByIndex(i);
         Dictionary<int, int> timeToCount = addressToSum.getValue();
