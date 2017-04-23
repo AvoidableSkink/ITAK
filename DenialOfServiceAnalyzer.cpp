@@ -31,31 +31,7 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
             src = myVals[2];
             des = myVals[3];
         }
-
-        //a mess
-        //if the ip is not already in the dictionary, add it
-        if (!myData.search(ip))
-        {
-            Dictionary<int, int> newDictionary;
-            newDictionary.add(convertStringToInt(time), 1);
-            myData.add(ip, newDictionary);
-        }
-        else
-        {
-            KeyValue<std::string, Dictionary<int, int>> addressToSum = myData.getByKey(ip);
-            Dictionary<int, int> timeToCount = addressToSum.getValue();
-            if (timeToCount.search(convertStringToInt(time)))
-            {
-                int newCount = timeToCount.getByKey(convertStringToInt(time)).getValue()+1;
-                timeToCount.updateKey(convertStringToInt(time), newCount);
-                myData.updateKey(ip, timeToCount);
-            }
-            else
-            {
-                timeToCount.add(convertStringToInt(time), 1);
-                myData.updateKey(ip, timeToCount);
-            }
-        }
+        fillDOS(ip, time);
     }
 
     for (int i = 0; i < myData.getCount(); ++i) {
@@ -102,4 +78,30 @@ void DenialOfServiceAnalyzer::setConfiguration(Configuration config) {
     likelyThreshold = config.getValAsInt("Likely Attack Message Count");
     possibleThreshold = config.getValAsInt("Possible Attack Message Count");
     configured = true;
+}
+
+void DenialOfServiceAnalyzer::fillDOS(std::string ip, std::string time) {
+    //if the ip is not already in the dictionary, add it
+    if (!myData.search(ip))
+    {
+        Dictionary<int, int> newDictionary;
+        newDictionary.add(convertStringToInt(time), 1);
+        myData.add(ip, newDictionary);
+    }
+    else
+    {
+        KeyValue<std::string, Dictionary<int, int>> addressToSum = myData.getByKey(ip);
+        Dictionary<int, int> timeToCount = addressToSum.getValue();
+        if (timeToCount.search(convertStringToInt(time)))
+        {
+            int newCount = timeToCount.getByKey(convertStringToInt(time)).getValue()+1;
+            timeToCount.updateKey(convertStringToInt(time), newCount);
+            myData.updateKey(ip, timeToCount);
+        }
+        else
+        {
+            timeToCount.add(convertStringToInt(time), 1);
+            myData.updateKey(ip, timeToCount);
+        }
+    }
 }

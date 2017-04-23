@@ -20,6 +20,7 @@ public:
     DenialOfServiceAnalyzer();
     ResultSet run(std::istream& in);
     void setConfiguration(Configuration config);
+    void fillDOS(std::string ip, std::string time);
     //functions to give test cases access to some data members
     int getTimeframe() { return timeframe; }
     int getLikelyThreshold() { return likelyThreshold; }
