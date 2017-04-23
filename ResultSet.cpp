@@ -15,7 +15,7 @@ void ResultSet::print() {
         std::vector<std::string> value;
         value = myResults.getByIndex(i).getValue();
         for (int j = 0; j < value.size(); ++j) {
-            std::cout << "  " << value[i] << std::endl;
+            std::cout << "  " << value[j] << std::endl;
         }
     }
 }

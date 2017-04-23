@@ -70,20 +70,26 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
             }
             std::cout << messageCount << std::endl;
 
-            std::string attackPeriod = std::to_string(startTime) + "-" + std::to_string(limit-1);
+            std::string attackPeriod = std::to_string(startTime-5) + "-" + std::to_string(limit-1);
             //add qualified data to the vectors
             if (messageCount >= likelyThreshold)
             {
-                likelyAttacker = true;
+                likelyAttackers.push_back(addressToSum.getKey());
                 attackPeriods.push_back(attackPeriod);
             }
             else if (messageCount >= possibleThreshold)
             {
-                possibleAttacker = true;
+                possibleAttackers.push_back(addressToSum.getKey());
                 attackPeriods.push_back(attackPeriod);
             }
         }
     }
+
+    resultSet.addResult("Likely Attackers", likelyAttackers);
+    resultSet.addResult("Possible Attackers", possibleAttackers);
+    resultSet.addResult("Attack Periods", attackPeriods);
+    resultSet.addResult("TimeFrame", timeFrame);
+    resultSet.print();
     return resultSet;
 }
 
