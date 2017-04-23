@@ -34,40 +34,31 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
         fillDOS(ip, time);
     }
 
+
     for (int i = 0; i < myData.getCount(); ++i) {
         KeyValue<std::string, Dictionary<int, int>> addressToSum = myData.getByIndex(i);
         Dictionary<int, int> timeToCount = addressToSum.getValue();
 
-        int nextLimit;
-        if (timeToCount.getCount() - timeframe <= 0)
-        {
-            nextLimit = 1;
-        }
-        else
-        {
-            nextLimit = timeToCount.getCount() - timeframe + 1;
-        }
-
-        for (int j = 0; j < nextLimit; ++j) {
-            int count = 0;
-            int s = timeToCount.getByIndex(j).getKey();
-            int limit = s + timeframe;
+        for (int j = 0; j < timeToCount.getCount(); ++j) {
+            int messageCount = 0;
+            int startTime = timeToCount.getByIndex(j).getKey();
+            int limit = startTime + timeframe;
             bool failed = false;
-            while (s < limit) {
+            while (startTime < limit) {
                 try {
-                    timeToCount.getByKey(s);
+                    timeToCount.getByKey(startTime);
                 }
                 catch (std::out_of_range) {
                     std::cout << "caught!!!!!!!" << std::endl;
                     failed = true;
                 }
                 if (!failed)
-                    count += timeToCount.getByKey(s).getValue();
+                    messageCount += timeToCount.getByKey(startTime).getValue();
 
-                s++;
+                startTime++;
                 failed = false;
             }
-            std::cout << count << std::endl;
+            std::cout << messageCount << std::endl;
         }
     }
 }
@@ -104,4 +95,8 @@ void DenialOfServiceAnalyzer::fillDOS(std::string ip, std::string time) {
             myData.updateKey(ip, timeToCount);
         }
     }
+}
+
+int DenialOfServiceAnalyzer::sumAllMessageCounts() {
+
 }
