@@ -5,7 +5,7 @@
 
 int main() {
     Configuration myConfiguration;
-    myConfiguration.addParamter("Likely Attack Port Count", "500");
+    myConfiguration.addParamter("Likely Attack Port Count", "600");
     myConfiguration.addParamter("Possible Attack Port Count", "300");
 
     PortScanAnalyzer portScanAnalyzer;
