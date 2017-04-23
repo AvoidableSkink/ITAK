@@ -15,6 +15,7 @@ private:
     int timeframe;
     int likelyThreshold;
     int possibleThreshold;
+    ResultSet results;
 public:
     DenialOfServiceAnalyzer();
     ResultSet run(std::istream& in);

@@ -3,3 +3,11 @@
 //
 
 #include "ResultSet.h"
+
+//void ResultSet::addResult(std::string key, std::vector<std::string> value) {
+//    myResults.add(key, value);
+//}
+//
+//void ResultSet::print() {
+//
+//}

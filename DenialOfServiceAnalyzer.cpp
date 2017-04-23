@@ -57,6 +57,43 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
             }
         }
     }
+
+    for (int i = 0; i < myData.getCount(); ++i) {
+        KeyValue<std::string, Dictionary<int, int>> addressToSum = myData.getByIndex(i);
+        Dictionary<int, int> timeToCount = addressToSum.getValue();
+
+        int nextLimit;
+        if (timeToCount.getCount() - timeframe <= 0)
+        {
+            nextLimit = 1;
+        }
+        else
+        {
+            nextLimit = timeToCount.getCount() - timeframe + 1;
+        }
+
+        for (int j = 0; j < nextLimit; ++j) {
+            int count = 0;
+            int s = timeToCount.getByIndex(j).getKey();
+            int limit = s + timeframe;
+            bool failed = false;
+            while (s < limit) {
+                try {
+                    timeToCount.getByKey(s);
+                }
+                catch (std::out_of_range) {
+                    std::cout << "caught!!!!!!!" << std::endl;
+                    failed = true;
+                }
+                if (!failed)
+                    count += timeToCount.getByKey(s).getValue();
+
+                s++;
+                failed = false;
+            }
+            std::cout << count << std::endl;
+        }
+    }
 }
 
 void DenialOfServiceAnalyzer::setConfiguration(Configuration config) {
