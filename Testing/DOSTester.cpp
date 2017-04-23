@@ -55,13 +55,13 @@ void DOSTester::testRun() {
     //set up a configuration
     Configuration myConfiguration;
     myConfiguration.addParamter("TimeFrame", "5");
-    myConfiguration.addParamter("Likely Attack Message Count", "3");
-    myConfiguration.addParamter("Possible Attack Message Count", "2");
+    myConfiguration.addParamter("Likely Attack Message Count", "500");
+    myConfiguration.addParamter("Possible Attack Message Count", "300");
 
     DenialOfServiceAnalyzer denialOfServiceAnalyzer;
     denialOfServiceAnalyzer.setConfiguration(myConfiguration);
 
     std::ifstream inputStream("../SampleData.csv");
-    ResultSet results = denialOfServiceAnalyzer.run(inputStream)
+    ResultSet results = denialOfServiceAnalyzer.run(inputStream);
     results.print();
 }
