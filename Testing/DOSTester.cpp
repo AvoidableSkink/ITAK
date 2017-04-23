@@ -52,6 +52,7 @@ void DOSTester::testSetConfiguration() {
 void DOSTester::testRun() {
     std::cout << "DOSTester::testRun" << std::endl;
 
+    std::cout << "case one" << std::endl;
     //set up a configuration
     Configuration myConfiguration;
     myConfiguration.addParamter("TimeFrame", "5");
@@ -63,5 +64,22 @@ void DOSTester::testRun() {
 
     std::ifstream inputStream("../SampleData.csv");
     ResultSet results = denialOfServiceAnalyzer.run(inputStream);
-//    results.print();
+    results.print();
+
+    std::cout << "case two" << std::endl;
+    //set up a configuration
+    Configuration myConfiguration2;
+    myConfiguration2.addParamter("bad configuration", "5");
+    myConfiguration2.addParamter("Likely Attack Message Count", "500");
+    myConfiguration2.addParamter("Possible Attack Message Count", "300");
+
+    DenialOfServiceAnalyzer denialOfServiceAnalyzer2;
+    try {
+        denialOfServiceAnalyzer.setConfiguration(myConfiguration2);
+        std::cout << "Failure: Inadequate configuration set." << std::endl;
+    }
+    catch (std::out_of_range){}
+
+    ResultSet results2 = denialOfServiceAnalyzer.run(inputStream);
+    results2.print();
 }
