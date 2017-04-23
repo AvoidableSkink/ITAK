@@ -24,7 +24,7 @@ ResultSet PortScanAnalyzer::run(std::istream & in) {
     portCount.push_back(std::to_string(likelyThreshold));
     portCount.push_back(std::to_string(possibleThreshold));
 
-    std::string time, ip, src, des;
+    std::string ip, des;
     while (!in.eof())
     {
         std::string line;
@@ -33,13 +33,23 @@ ResultSet PortScanAnalyzer::run(std::istream & in) {
         std::string myVals[4];
         if (split(line, ',', myVals, 4))
         {
-            time = myVals[0];
             ip = myVals[1];
-            src = myVals[2];
             des = myVals[3];
         }
         fillPSA(ip, des);
     }
+
+    //attack detection phase
+    for (int i = 0; i < myData.getCount(); ++i) {
+        if (myData.getByIndex(i).getValue().size() >= likelyThreshold)
+            likelyAttackers.push_back(myData.getByIndex(i).getKey());
+        else if (myData.getByIndex(i).getValue().size() >= possibleThreshold)
+            possibleAttackers.push_back(myData.getByIndex(i).getKey());
+    }
+    results.addResult("Likely Attackers", likelyAttackers);
+    results.addResult("Possible Attackers", possibleAttackers);
+    results.addResult("Port Count", portCount);
+    return results;
 }
 
 void PortScanAnalyzer::setConfiguration(Configuration config) {

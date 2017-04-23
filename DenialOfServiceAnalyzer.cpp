@@ -23,7 +23,7 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
     std::vector<std::string> timeFrame;
     timeFrame.push_back(std::to_string(timeframe));
 
-    std::string time, ip, src, des;
+    std::string time, ip;
     while (!in.eof())
     {
         std::string line;
@@ -34,8 +34,6 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
         {
             time = myVals[0];
             ip = myVals[1];
-            src = myVals[2];
-            des = myVals[3];
         }
         fillDOS(ip, time);
     }

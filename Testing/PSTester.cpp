@@ -48,9 +48,8 @@ void PSTester::testRun() {
 
     //set up a configuration
     Configuration myConfiguration;
-    myConfiguration.addParamter("TimeFrame", "5");
-    myConfiguration.addParamter("Likely Attack Message Count", "500");
-    myConfiguration.addParamter("Possible Attack Message Count", "300");
+    myConfiguration.addParamter("Likely Attack Port Count", "500");
+    myConfiguration.addParamter("Possible Attack Port Count", "300");
 
     PortScanAnalyzer portScanAnalyzer;
     portScanAnalyzer.setConfiguration(myConfiguration);

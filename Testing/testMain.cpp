@@ -19,4 +19,5 @@ int main() {
 
     PSTester psTester;
     psTester.testSetConfiguration();
+    psTester.testRun();
 }
