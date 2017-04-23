@@ -18,7 +18,7 @@ public:
     PortScanAnalyzer();
     ResultSet run(std::istream&);
     void setConfiguration(Configuration config);
-
+    void fillPSA(std::string ip, std::string des);
     //functions to give test cases access to some data members
     int getLikelyThreshold() { return likelyThreshold; }
     int getPossibleThreshold() { return possibleThreshold; }

@@ -38,32 +38,7 @@ ResultSet PortScanAnalyzer::run(std::istream & in) {
             src = myVals[2];
             des = myVals[3];
         }
-        //fill the dictionary
-        if (!myData.search(ip))
-        {
-            std::vector<int> ports;
-            ports.push_back(convertStringToInt(des));
-            myData.add(ip, ports);
-        }
-        else
-        {
-            std::vector<int> updatedList = myData.getByKey(ip).getValue();
-
-            bool found = false;
-            for (int i = 0; i < updatedList.size(); ++i) {
-                if (updatedList[i] == convertStringToInt(des))
-                {
-                    found = true;
-                    break;
-                }
-            }
-
-            if (!found)
-            {
-                updatedList.push_back(convertStringToInt(des));
-                myData.updateKey(ip, updatedList);
-            }
-        }
+        fillPSA(ip, des);
     }
 }
 
@@ -72,4 +47,33 @@ void PortScanAnalyzer::setConfiguration(Configuration config) {
     likelyThreshold = config.getValAsInt("Likely Attack Port Count");
     possibleThreshold = config.getValAsInt("Possible Attack Port Count");
     configured = true;
+}
+
+void PortScanAnalyzer::fillPSA(std::string ip, std::string des) {
+    //fill the dictionary
+    if (!myData.search(ip))
+    {
+        std::vector<int> ports;
+        ports.push_back(convertStringToInt(des));
+        myData.add(ip, ports);
+    }
+    else
+    {
+        std::vector<int> updatedList = myData.getByKey(ip).getValue();
+
+        bool found = false;
+        for (int i = 0; i < updatedList.size(); ++i) {
+            if (updatedList[i] == convertStringToInt(des))
+            {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found)
+        {
+            updatedList.push_back(convertStringToInt(des));
+            myData.updateKey(ip, updatedList);
+        }
+    }
 }
