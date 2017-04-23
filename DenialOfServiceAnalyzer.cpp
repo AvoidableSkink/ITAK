@@ -84,6 +84,7 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
             }
         }
     }
+    return resultSet;
 }
 
 void DenialOfServiceAnalyzer::setConfiguration(Configuration config) {

@@ -10,11 +10,11 @@
 #include "Dictionary.h"
 
 class ResultSet {
-//private:
-////    Dictionary<std::string, std::vector<std::string>> myResults;
-//public:
-//    void addResult(std::string key, std::vector<std::string>);
-//    void print();
+private:
+    Dictionary<std::string, std::vector<std::string>> myResults;
+public:
+    void addResult(std::string key, std::vector<std::string>);
+    void print();
 };
 
 
