@@ -55,8 +55,8 @@ void DOSTester::testRun() {
     //set up a configuration
     Configuration myConfiguration;
     myConfiguration.addParamter("TimeFrame", "5");
-    myConfiguration.addParamter("Likely Attack Message Count", "2");
-    myConfiguration.addParamter("Possible Attack Message Count", "1");
+    myConfiguration.addParamter("Likely Attack Message Count", "500");
+    myConfiguration.addParamter("Possible Attack Message Count", "300");
 
     DenialOfServiceAnalyzer denialOfServiceAnalyzer;
     denialOfServiceAnalyzer.setConfiguration(myConfiguration);

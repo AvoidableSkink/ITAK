@@ -59,7 +59,6 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
                     timeToCount.getByKey(startTime);
                 }
                 catch (std::out_of_range) {
-                    std::cout << "caught!!!!!!!" << std::endl;
                     failed = true;
                 }
                 if (!failed)
@@ -68,7 +67,6 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
                 startTime++;
                 failed = false;
             }
-            std::cout << messageCount << std::endl;
 
             std::string attackPeriod = std::to_string(startTime-5) + "-" + std::to_string(limit-1);
             //add qualified data to the vectors
