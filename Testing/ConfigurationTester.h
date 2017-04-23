@@ -8,9 +8,8 @@
 
 class ConfigurationTester {
 public:
-    //dont know if ill need this one, i know the dictionary add function works
-    void testAddParameter();
-
+    //dont know if ill need this one, i know the dictionary add function works because i tested it
+    //void testAddParameter();
     void testGetValAsString();
     void testGetValAsDouble();
     void testGetValAsInt();

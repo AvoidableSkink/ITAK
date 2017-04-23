@@ -17,7 +17,6 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
         return empty;
     }
 
-    ResultSet resultSet;
     std::vector<std::string> likelyAttackers;
     std::vector<std::string> possibleAttackers;
     std::vector<std::string> attackPeriods;
@@ -83,12 +82,11 @@ ResultSet DenialOfServiceAnalyzer::run(std::istream& in) {
         }
     }
 
-    resultSet.addResult("Likely Attackers", likelyAttackers);
-    resultSet.addResult("Possible Attackers", possibleAttackers);
-    resultSet.addResult("Attack Periods", attackPeriods);
-    resultSet.addResult("TimeFrame", timeFrame);
-    resultSet.print();
-    return resultSet;
+    results.addResult("Likely Attackers", likelyAttackers);
+    results.addResult("Possible Attackers", possibleAttackers);
+    results.addResult("Attack Periods", attackPeriods);
+    results.addResult("TimeFrame", timeFrame);
+    return results;
 }
 
 void DenialOfServiceAnalyzer::setConfiguration(Configuration config) {
@@ -123,8 +121,4 @@ void DenialOfServiceAnalyzer::fillDOS(std::string ip, std::string time) {
             myData.updateKey(ip, timeToCount);
         }
     }
-}
-
-int DenialOfServiceAnalyzer::sumAllMessageCounts() {
-
 }
