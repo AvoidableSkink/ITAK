@@ -17,13 +17,12 @@ protected:
     int possibleThreshold;
     ResultSet results;
 public:
-    virtual ResultSet run(std::istream&){};
-    virtual void setConfiguration(Configuration config){};
-    virtual void fill(std::string, std::string){};
+    virtual ResultSet run(std::istream&) = 0;
+    virtual void setConfiguration(Configuration config) = 0;
+    virtual void fill(std::string, std::string) = 0;
 
     int getLikelyThreshold() { return likelyThreshold; }
     int getPossibleThreshold() { return possibleThreshold; }
 };
-
 
 #endif //ITAK_ANALYZER_H

@@ -4,7 +4,7 @@ project(ITAK)
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
-        Analyzer.cpp Analyzer.h
+        Analyzer.h
         DenialOfServiceAnalyzer.cpp DenialOfServiceAnalyzer.h
         PortScanAnalyzer.cpp PortScanAnalyzer.h
         Configuration.cpp Configuration.h
